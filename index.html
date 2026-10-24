@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio of Rangga Ganupranowo Hadad - Aspiring Cybersecurity Engineer, Computer Engineering graduate from Universitas Diponegoro (UNDIP).">
+  <title>Rangga Ganupranowo Hadad | Aspiring Cybersecurity Engineer</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Network Canvas Background -->
+  <canvas id="cyber-canvas" class="cyber-canvas" aria-hidden="true"></canvas>
+
+  <!-- Navigation Bar -->
+  <header class="site-header">
+    <nav class="nav-container">
+      <a href="#hero" class="brand-logo" aria-label="Home">
+        <span class="logo-prefix">&gt;</span>
+        <span class="logo-name">RGH</span>
+        <span class="logo-badge">SEC::OPS</span>
+      </a>
+
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="#about" class="nav-link"><span class="nav-index">01.</span>About</a></li>
+        <li><a href="#skills" class="nav-link"><span class="nav-index">02.</span>Skills</a></li>
+        <li><a href="#projects" class="nav-link"><span class="nav-index">03.</span>Projects</a></li>
+        <li><a href="#journey" class="nav-link"><span class="nav-index">04.</span>Focus</a></li>
+        <li><a href="#education" class="nav-link"><span class="nav-index">05.</span>Education</a></li>
+        <li><a href="#contact" class="nav-link cta-link">Connect</a></li>
+      </ul>
+
+      <!-- Centralized Auth Slot -->
+      <div id="nav-auth-container" class="nav-auth-container"></div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+      <!-- 3D Cyber Scene Background -->
+      <div id="hero-3d-container" class="hero-3d-container" aria-hidden="true">
+        <canvas id="hero-3d-canvas" class="hero-3d-canvas"></canvas>
+        <div id="hero-3d-fallback" class="hero-3d-fallback" aria-hidden="true"></div>
+      </div>
+
+      <div class="container hero-container">
+        <div class="hero-content">
+          <div class="status-indicator">
+            <span class="status-dot"></span>
+            <span class="status-text">DEFENSE READINESS // SYSTEM READY</span>
+          </div>
+
+          <h1 class="hero-name">Rangga Ganupranowo Hadad</h1>
+          <h2 class="hero-headline">
+            <span class="gradient-text">Aspiring Cybersecurity Engineer</span>
+          </h2>
+
+          <p class="hero-description">
+            Computer Engineering graduate from Universitas Diponegoro with a focused passion for cybersecurity, 
+            computer networking, system defense, and intelligent systems. Committed to threat detection, 
+            robust network infrastructure, and IoT security integration.
+          </p>
+
+          <div class="hero-meta">
+            <div class="meta-item">
+              <span class="meta-label">Location:</span>
+              <span class="meta-value">Bekasi, Indonesia</span>
+            </div>
+            <div class="meta-separator">//</div>
+            <div class="meta-item">
+              <span class="meta-label">Degree:</span>
+              <span class="meta-value">S1 Computer Engineering (UNDIP)</span>
+            </div>
+          </div>
+
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">
+              <span class="btn-text">Explore My Projects</span>
+              <span class="btn-icon">→</span>
+            </a>
+            <a href="#contact" class="btn btn-secondary">
+              <span class="btn-text">Contact Me</span>
+            </a>
+          </div>
+
+          <div class="social-quicklinks">
+            <a href="https://github.com/ranggagh" target="_blank" rel="noopener noreferrer" class="social-link" title="GitHub">
+              <svg class="social-svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+              <span>GitHub</span>
+            </a>
+            <a href="https://www.linkedin.com/in/rangga-ganupranowo-hadad-ba2008254/" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn">
+              <svg class="social-svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+              <span>LinkedIn</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Terminal Card Component -->
+        <div class="hero-terminal">
+          <div class="terminal-window">
+            <div class="terminal-bar">
+              <div class="terminal-buttons">
+                <span class="term-btn term-close"></span>
+                <span class="term-btn term-min"></span>
+                <span class="term-btn term-max"></span>
+              </div>
+              <div class="terminal-title">rangga@security-node: ~</div>
+              <div class="terminal-status">LIVE</div>
+            </div>
+            <div class="terminal-body" id="terminal-body">
+              <p class="term-line"><span class="term-prompt">$</span> <span class="term-cmd">whoami</span></p>
+              <p class="term-output">&gt; Rangga Ganupranowo Hadad [B.Eng in Computer Engineering]</p>
+              
+              <p class="term-line"><span class="term-prompt">$</span> <span class="term-cmd">cat target_role.conf</span></p>
+              <p class="term-output">&gt; ROLE="Cybersecurity Engineer"</p>
+              <p class="term-output">&gt; CORE=["SIEM", "Log Analysis", "Network Security", "IoT"]</p>
+              
+              <p class="term-line"><span class="term-prompt">$</span> <span class="term-cmd">splunk status --active-inputs</span></p>
+              <p class="term-output term-highlight">&gt; [OK] Monitor: /var/log/auth.log [SSH Telemetry]</p>
+              <p class="term-output term-highlight">&gt; [OK] Alert Rule: "Brute Force Threshold Triggered"</p>
+              
+              <p class="term-line"><span class="term-prompt">$</span> <span class="term-cmd">ping -c 1 rowosari-iot-gw</span></p>
+              <p class="term-output">&gt; 64 bytes from esp8266-lora-node: time=18.4ms [STATUS: STABLE]</p>
+              
+              <p class="term-line"><span class="term-prompt">$</span> <span class="term-cmd terminal-cursor-target">echo "Ready to defend."</span><span class="term-cursor">_</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">&lt;01 // IDENTITY&gt;</span>
+          <h2 class="section-title">About Me</h2>
+          <div class="section-rule"></div>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-narrative">
+            <p class="lead-text">
+              I am a Computer Engineering graduate from <strong>Universitas Diponegoro (UNDIP)</strong>, 
+              actively pursuing a professional path in cybersecurity and systems engineering.
+            </p>
+            <p>
+              My academic and technical journey spans the full stack of computing systems—from low-level hardware, 
+              microcontrollers, and sensor networking up to operating system architectures, network routing, 
+              and security monitoring. This comprehensive foundation enables me to view cybersecurity holistically, 
+              understanding vulnerabilities at both physical IoT endpoints and enterprise network boundaries.
+            </p>
+            <p>
+              I have developed hands-on familiarity with security event monitoring using Splunk, simulated threat scenarios 
+              such as SSH brute-force analysis, and engineered reliable telemetry pipelines using LoRa and ESP8266. 
+              Currently, I continuously refine my knowledge in Security Operations Center (SOC) workflows, SIEM analytics, 
+              and explore how artificial intelligence and machine learning can strengthen incident triage and automated defense.
+            </p>
+
+            <div class="key-facts-grid">
+              <div class="fact-card">
+                <span class="fact-number">UNDIP</span>
+                <span class="fact-label">Universitas Diponegoro</span>
+                <span class="fact-desc">S1 Teknik Komputer</span>
+              </div>
+              <div class="fact-card">
+                <span class="fact-number">SOC</span>
+                <span class="fact-label">Career Focus</span>
+                <span class="fact-desc">Security Monitoring & SIEM</span>
+              </div>
+              <div class="fact-card">
+                <span class="fact-number">IoT</span>
+                <span class="fact-label">Embedded & Network</span>
+                <span class="fact-desc">LoRa, ESP8266, Protocols</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-highlights">
+            <div class="cyber-card highlight-card">
+              <div class="card-corner top-left"></div>
+              <div class="card-corner bottom-right"></div>
+              <h3 class="card-heading">
+                <span class="card-icon">🛡️</span> Core Technical Focus
+              </h3>
+              <ul class="bullet-list">
+                <li>
+                  <strong>Security Event Monitoring:</strong> Ingesting and investigating host authentication, syslog, and network traffic records.
+                </li>
+                <li>
+                  <strong>Computer Networking:</strong> Solid grasp of TCP/IP, OSI layers, routing fundamentals, and troubleshooting.
+                </li>
+                <li>
+                  <strong>IoT & Hardware Interfacing:</strong> Sensor integration, microcontroller telemetry, and long-range LoRa packet communication.
+                </li>
+                <li>
+                  <strong>Emerging Tech Exploration:</strong> Investigating applied AI and machine learning techniques for anomalous traffic analysis.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Skills Section -->
+    <section id="skills" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">&lt;02 // CAPABILITIES&gt;</span>
+          <h2 class="section-title">Technical Skills</h2>
+          <div class="section-rule"></div>
+        </div>
+
+        <div class="skills-grid">
+          <!-- Category 1: Cybersecurity -->
+          <div class="cyber-card skill-group">
+            <div class="skill-group-header">
+              <div class="group-icon-wrapper">
+                <svg viewBox="0 0 24 24" class="group-svg" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="group-title">Cybersecurity</h3>
+                <span class="group-subtitle">Defensive & Analysis</span>
+              </div>
+            </div>
+            <ul class="skill-items">
+              <li class="skill-tag">SIEM Fundamentals</li>
+              <li class="skill-tag">Splunk</li>
+              <li class="skill-tag">Security Monitoring</li>
+              <li class="skill-tag">Log Analysis</li>
+              <li class="skill-tag">Authentication Telemetry</li>
+              <li class="skill-tag">Attack Surface Awareness</li>
+            </ul>
+          </div>
+
+          <!-- Category 2: Networking -->
+          <div class="cyber-card skill-group">
+            <div class="skill-group-header">
+              <div class="group-icon-wrapper">
+                <svg viewBox="0 0 24 24" class="group-svg" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <line x1="2" y1="12" x2="22" y2="12"/>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="group-title">Networking</h3>
+                <span class="group-subtitle">Protocols & Infrastructure</span>
+              </div>
+            </div>
+            <ul class="skill-items">
+              <li class="skill-tag">Computer Networking</li>
+              <li class="skill-tag">Network Troubleshooting</li>
+              <li class="skill-tag">Network Security Fundamentals</li>
+              <li class="skill-tag">TCP/IP & OSI Model</li>
+              <li class="skill-tag">Routing & Subnetting</li>
+            </ul>
+          </div>
+
+          <!-- Category 3: Development -->
+          <div class="cyber-card skill-group">
+            <div class="skill-group-header">
+              <div class="group-icon-wrapper">
+                <svg viewBox="0 0 24 24" class="group-svg" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="16 18 22 12 16 6"/>
+                  <polyline points="8 6 2 12 8 18"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="group-title">Development</h3>
+                <span class="group-subtitle">Languages & Databases</span>
+              </div>
+            </div>
+            <ul class="skill-items">
+              <li class="skill-tag">HTML5</li>
+              <li class="skill-tag">CSS3</li>
+              <li class="skill-tag">JavaScript</li>
+              <li class="skill-tag">SQL</li>
+              <li class="skill-tag">Java</li>
+              <li class="skill-tag">Git Version Control</li>
+            </ul>
+          </div>
+
+          <!-- Category 4: Systems & IoT -->
+          <div class="cyber-card skill-group">
+            <div class="skill-group-header">
+              <div class="group-icon-wrapper">
+                <svg viewBox="0 0 24 24" class="group-svg" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="4" y="4" width="16" height="16" rx="2" ry="2"/>
+                  <rect x="9" y="9" width="6" height="6"/>
+                  <line x1="9" y1="1" x2="9" y2="4"/>
+                  <line x1="15" y1="1" x2="15" y2="4"/>
+                  <line x1="9" y1="20" x2="9" y2="23"/>
+                  <line x1="15" y1="20" x2="15" y2="23"/>
+                  <line x1="20" y1="9" x2="23" y2="9"/>
+                  <line x1="20" y1="14" x2="23" y2="14"/>
+                  <line x1="1" y1="9" x2="4" y2="9"/>
+                  <line x1="1" y1="14" x2="4" y2="14"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="group-title">Systems &amp; IoT</h3>
+                <span class="group-subtitle">Hardware &amp; Platforms</span>
+              </div>
+            </div>
+            <ul class="skill-items">
+              <li class="skill-tag">Linux Fundamentals</li>
+              <li class="skill-tag">Embedded Systems</li>
+              <li class="skill-tag">ESP8266</li>
+              <li class="skill-tag">LoRa Communication</li>
+              <li class="skill-tag">IoT Monitoring</li>
+              <li class="skill-tag">Sensor Interfacing</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Projects Section -->
+    <section id="projects" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">&lt;03 // IMPLEMENTATIONS&gt;</span>
+          <h2 class="section-title">Featured Projects</h2>
+          <div class="section-rule"></div>
+        </div>
+
+        <div class="projects-grid">
+          <!-- Project 1: SOC Monitoring Dashboard -->
+          <article class="cyber-card project-card">
+            <div class="project-header">
+              <span class="project-badge badge-primary">SOC OPERATIONS / SIEM</span>
+              <span class="project-status">APPLICATION</span>
+            </div>
+            
+            <h3 class="project-title">
+              <a href="soc-dashboard.html">SOC Monitoring Dashboard</a>
+            </h3>
+            
+            <p class="project-description">
+              Real-time security operations center telemetry interface. Features live event log aggregation, 
+              threat alert correlation, brute-force attack detection patterns, and host defense metrics.
+            </p>
+
+            <div class="project-tech-stack">
+              <span class="tech-pill">SOC Dashboard</span>
+              <span class="tech-pill">SIEM</span>
+              <span class="tech-pill">Log Correlation</span>
+              <span class="tech-pill">Threat Telemetry</span>
+              <span class="tech-pill">Security Analytics</span>
+            </div>
+
+            <div class="project-footer">
+              <a href="soc-dashboard.html" class="btn btn-primary btn-sm">
+                <span>Launch App</span>
+                <span class="btn-icon">→</span>
+              </a>
+              <span class="tag-status-pill">Interactive App</span>
+            </div>
+          </article>
+
+          <!-- Project 2: Incident Management -->
+          <article class="cyber-card project-card">
+            <div class="project-header">
+              <span class="project-badge badge-secondary">INCIDENT RESPONSE</span>
+              <span class="project-status">APPLICATION</span>
+            </div>
+            
+            <h3 class="project-title">
+              <a href="incident-management.html">Incident Management</a>
+            </h3>
+            
+            <p class="project-description">
+              Security incident lifecycle management platform. Handles alert triage, ticket tracking, 
+              severity classification, containment workflow automation, and forensic audit logging.
+            </p>
+
+            <div class="project-tech-stack">
+              <span class="tech-pill">Incident Triage</span>
+              <span class="tech-pill">Ticket Lifecycle</span>
+              <span class="tech-pill">Threat Containment</span>
+              <span class="tech-pill">SLA Tracking</span>
+              <span class="tech-pill">Audit Trail</span>
+            </div>
+
+            <div class="project-footer">
+              <a href="incident-management.html" class="btn btn-primary btn-sm">
+                <span>Launch App</span>
+                <span class="btn-icon">→</span>
+              </a>
+              <span class="tag-status-pill">Interactive App</span>
+            </div>
+          </article>
+
+          <!-- Project 3: Cybersecurity Lab Portal -->
+          <article class="cyber-card project-card">
+            <div class="project-header">
+              <span class="project-badge badge-tertiary">SECURITY LAB</span>
+              <span class="project-status">APPLICATION</span>
+            </div>
+            
+            <h3 class="project-title">
+              <a href="cyber-lab.html">Cybersecurity Lab Portal</a>
+            </h3>
+            
+            <p class="project-description">
+              Interactive hands-on security laboratory and simulation environment. Includes packet capture inspection, 
+              network protocol analysis, attack simulation scenarios, and IoT telemetry validation.
+            </p>
+
+            <div class="project-tech-stack">
+              <span class="tech-pill">Security Labs</span>
+              <span class="tech-pill">Packet Inspection</span>
+              <span class="tech-pill">Network Protocols</span>
+              <span class="tech-pill">Attack Simulation</span>
+              <span class="tech-pill">IoT Defense</span>
+            </div>
+
+            <div class="project-footer">
+              <a href="cyber-lab.html" class="btn btn-primary btn-sm">
+                <span>Launch App</span>
+                <span class="btn-icon">→</span>
+              </a>
+              <span class="tag-status-pill">Interactive App</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Learning Journey Section -->
+    <section id="journey" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">&lt;04 // PROGRESSION&gt;</span>
+          <h2 class="section-title">Learning Journey</h2>
+          <div class="section-rule"></div>
+        </div>
+
+        <div class="journey-intro">
+          <p>
+            Continuous development roadmap targeted toward Security Operations Center (SOC) competencies, 
+            incident analysis readiness, and intelligent network monitoring.
+          </p>
+        </div>
+
+        <div class="timeline-container">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content cyber-card">
+              <span class="timeline-step">STEP 01</span>
+              <h3 class="timeline-heading">SOC Operations &amp; SIEM Fundamentals</h3>
+              <p>
+                Strengthening skills in log aggregation, correlation rule development, incident lifecycle comprehension, 
+                and SIEM operations centered on Splunk.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content cyber-card">
+              <span class="timeline-step">STEP 02</span>
+              <h3 class="timeline-heading">Incident Analysis &amp; Threat Detection</h3>
+              <p>
+                Investigating brute-force patterns, anomalous authentication trends, and endpoint telemetry traces 
+                across Linux environments to sharpen triage speed and accuracy.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content cyber-card">
+              <span class="timeline-step">STEP 03</span>
+              <h3 class="timeline-heading">Network Security &amp; Infrastructure Defense</h3>
+              <p>
+                Diving deeper into packet inspection, network segmentation principles, secure protocol usage, 
+                and baseline traffic profiling across multi-device networks.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content cyber-card">
+              <span class="timeline-step">STEP 04</span>
+              <h3 class="timeline-heading">AI &amp; Intelligent Systems in Security</h3>
+              <p>
+                Investigating practical intersections between machine learning models and anomaly detection 
+                in high-throughput network and IoT sensor streams.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education & Certifications Section -->
+    <section id="education" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">&lt;05 // CREDENTIALS&gt;</span>
+          <h2 class="section-title">Education &amp; Certifications</h2>
+          <div class="section-rule"></div>
+        </div>
+
+        <div class="credentials-layout">
+          <!-- Education Card -->
+          <div class="cyber-card edu-card">
+            <div class="edu-badge">ACADEMIC DEGREE</div>
+            <h3 class="edu-degree">S1 Teknik Komputer</h3>
+            <h4 class="edu-institution">Universitas Diponegoro (UNDIP)</h4>
+            <p class="edu-desc">
+              Bachelor's degree in Computer Engineering with extensive coursework covering computer architecture, 
+              operating systems, networking, embedded systems, microcontrollers, database systems, and software engineering.
+            </p>
+            <div class="edu-highlights">
+              <span class="edu-chip">Computer Networks</span>
+              <span class="edu-chip">Embedded Systems</span>
+              <span class="edu-chip">Operating Systems</span>
+              <span class="edu-chip">System Security</span>
+            </div>
+          </div>
+
+          <!-- Certifications & Coursework Container -->
+          <div class="cyber-card certs-card">
+            <div class="certs-header">
+              <h3 class="certs-title">Certifications &amp; Courses</h3>
+              <span class="certs-status-badge">CURRENTLY UPDATING</span>
+            </div>
+            <p class="certs-note">
+              Dedicated to continuous verification. Completed professional courses, security training, and industry certifications 
+              will be updated here as official credentials are confirmed.
+            </p>
+            
+            <div class="cert-slots">
+              <div class="cert-slot-item">
+                <div class="slot-indicator">✓</div>
+                <div class="slot-details">
+                  <span class="slot-title">Splunk &amp; SIEM Hands-On Labs</span>
+                  <span class="slot-issuer">Practical Security Simulation &amp; Ingestion</span>
+                </div>
+              </div>
+
+              <div class="cert-slot-item">
+                <div class="slot-indicator">✓</div>
+                <div class="slot-details">
+                  <span class="slot-title">Computer Engineering Capstone / IoT Telemetry</span>
+                  <span class="slot-issuer">Universitas Diponegoro Engineering Program</span>
+                </div>
+              </div>
+
+              <!-- Placeholder slot for user to easily insert new certs -->
+              <div class="cert-slot-item slot-placeholder">
+                <div class="slot-indicator">+</div>
+                <div class="slot-details">
+                  <span class="slot-title">[Add Next Completed Certification]</span>
+                  <span class="slot-issuer">Ready for CompTIA Security+, CCNA, or Splunk Certified Core User</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">&lt;06 // COMMUNICATE&gt;</span>
+          <h2 class="section-title">Contact &amp; Connect</h2>
+          <div class="section-rule"></div>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-info cyber-card">
+            <h3 class="contact-subhead">Let's Establish a Connection</h3>
+            <p class="contact-text">
+              I am open to discussions regarding entry-level Cybersecurity Engineer, SOC Analyst, 
+              or Network Security opportunities, as well as collaborative tech projects.
+            </p>
+
+            <div class="contact-items-list">
+              <div class="contact-item">
+                <div class="contact-item-icon">📍</div>
+                <div>
+                  <span class="contact-item-label">Location</span>
+                  <span class="contact-item-value">Bekasi, West Java, Indonesia</span>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-item-icon">💼</div>
+                <div>
+                  <span class="contact-item-label">LinkedIn</span>
+                  <a href="https://www.linkedin.com/in/rangga-ganupranowo-hadad-ba2008254/" target="_blank" rel="noopener noreferrer" class="contact-link">
+                    linkedin.com/in/rangga-ganupranowo-hadad
+                  </a>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-item-icon">💻</div>
+                <div>
+                  <span class="contact-item-label">GitHub</span>
+                  <a href="https://github.com/ranggagh" target="_blank" rel="noopener noreferrer" class="contact-link">
+                    github.com/ranggagh
+                  </a>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-item-icon">✉️</div>
+                <div>
+                  <span class="contact-item-label">Email</span>
+                  <a href="mailto:rangga.hadad@gmail.com" class="contact-link">
+                    rangga.hadad@gmail.com
+                  </a>
+                  <span class="email-note">(Updateable in index.html)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form-container cyber-card">
+            <h3 class="contact-subhead">Send a Message</h3>
+            <form id="contact-form" class="cyber-form">
+              <div class="form-group">
+                <label for="name" class="form-label">Full Name</label>
+                <input type="text" id="name" name="name" class="form-input" placeholder="Your Name" required>
+              </div>
+
+              <div class="form-group">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" id="email" name="email" class="form-input" placeholder="name@example.com" required>
+              </div>
+
+              <div class="form-group">
+                <label for="subject" class="form-label">Subject</label>
+                <input type="text" id="subject" name="subject" class="form-input" placeholder="Opportunity / Project Discussion" required>
+              </div>
+
+              <div class="form-group">
+                <label for="message" class="form-label">Message</label>
+                <textarea id="message" name="message" rows="4" class="form-textarea" placeholder="Write your message here..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block" id="form-submit-btn">
+                <span>Transmit Message</span>
+                <span class="btn-icon">⚡</span>
+              </button>
+
+              <div id="form-status" class="form-status-msg" aria-live="polite"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-left">
+        <span class="footer-name">Rangga Ganupranowo Hadad</span>
+        <span class="footer-divider">|</span>
+        <span class="footer-tagline">Cybersecurity &amp; Network Defense</span>
+      </div>
+      <div class="footer-center">
+        <span class="sys-status">SYS_STATUS: OPTIMAL [ENCRYPTION: AES-256]</span>
+      </div>
+      <div class="footer-right">
+        <a href="#hero" class="back-to-top">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 3D Three.js Library & Scene Script -->
+  <script src="js/three.min.js"></script>
+  <script>
+    if (typeof THREE === 'undefined') {
+      document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"><\/script>');
+    }
+  </script>
+  <script src="js/three-scene.js"></script>
+  <script src="js/script.js"></script>
+
+  <!-- Supabase JS Client & Centralized Auth -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>
