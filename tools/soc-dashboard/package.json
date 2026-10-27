@@ -1,0 +1,9 @@
+{
+  "name": "soc-dashboard",
+  "private": true,
+  "description": "SSH auth.log analyzer engine (browser-only). package.json ini hanya untuk menjalankan tes engine dengan Node.",
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/"
+  }
+}
