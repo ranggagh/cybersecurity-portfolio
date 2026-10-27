@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SOC Monitoring Dashboard - Analisis log SSH (auth.log) di browser: deteksi brute force, password spraying, dan akun yang berhasil dibobol.">
+  <title>SOC Monitoring Dashboard | Rangga Ganupranowo Hadad</title>
+  <!-- Wajib login: sembunyikan halaman sampai sesi Supabase terkonfirmasi -->
+  <script src="../../js/shared/auth-guard.js"></script>
+  <link rel="stylesheet" href="../../css/base.css">
+  <link rel="stylesheet" href="tool.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Background Network Canvas -->
+  <canvas id="cyber-canvas" class="cyber-canvas" aria-hidden="true"></canvas>
+
+  <!-- App Header & Navigation -->
+  <header class="site-header">
+    <nav class="nav-container">
+      <a href="../../index.html" class="brand-logo" aria-label="Home">
+        <span class="logo-prefix">&gt;</span>
+        <span class="logo-name">RGH</span>
+        <span class="logo-badge">SOC::DASH</span>
+      </a>
+
+      <div class="app-nav-actions" style="display: flex; align-items: center; gap: 1rem;">
+        <div id="nav-auth-container" class="nav-auth-container"></div>
+        <a href="../../index.html#projects" class="btn btn-outline btn-sm">
+          <span>← Back to Portfolio</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="app-page-main">
+    <div class="container">
+      <!-- Breadcrumb & Status -->
+      <div class="app-header-bar">
+        <div class="breadcrumb">
+          <a href="../../index.html">Portfolio</a>
+          <span class="sep">/</span>
+          <a href="../../index.html#projects">Projects</a>
+          <span class="sep">/</span>
+          <span class="current">SOC Monitoring Dashboard</span>
+        </div>
+
+        <div class="status-indicator">
+          <span class="status-dot"></span>
+          <span class="status-text">SSH LOG ANALYZER // BROWSER-ONLY</span>
+        </div>
+      </div>
+
+      <!-- Application Hero Header -->
+      <div class="app-title-section">
+        <h1 class="section-title">SOC Monitoring Dashboard</h1>
+        <p class="lead-text">
+          Analisis log SSH (<code>auth.log</code>) langsung di browser untuk belajar dan eksperimen:
+          deteksi brute force, password spraying, serangan ke akun privileged, dan akun yang berhasil dibobol,
+          lengkap dengan log mentah sebagai bukti.
+        </p>
+      </div>
+
+      <!-- Application Workspace -->
+      <section class="app-workspace cyber-card soc-workspace">
+        <div class="terminal-bar">
+          <div class="terminal-buttons">
+            <span class="term-btn term-close"></span>
+            <span class="term-btn term-min"></span>
+            <span class="term-btn term-max"></span>
+          </div>
+          <div class="terminal-title">soc-dashboard: /analyze/auth.log</div>
+          <div class="terminal-status" id="workspace-status">READY</div>
+        </div>
+
+        <div class="soc-body">
+          <!-- Layar 1: pilih sumber data -->
+          <div id="source-screen" class="soc-source-grid">
+            <article class="soc-source-card" aria-labelledby="sim-title">
+              <span class="soc-step">MODE 01</span>
+              <h2 id="sim-title" class="soc-card-title">Coba dengan data simulasi</h2>
+              <p class="soc-muted">
+                auth.log buatan dengan seed tetap (hasil selalu sama). IP memakai rentang dokumentasi,
+                bukan IP sungguhan.
+              </p>
+              <fieldset class="soc-scenarios">
+                <legend class="soc-label">Pilih skenario</legend>
+                <div id="scenario-list"></div>
+              </fieldset>
+              <button type="button" id="btn-run-sim" class="btn btn-primary">
+                <span>Jalankan simulasi</span>
+                <span class="btn-icon">→</span>
+              </button>
+            </article>
+
+            <article class="soc-source-card" aria-labelledby="upload-title">
+              <span class="soc-step">MODE 02</span>
+              <h2 id="upload-title" class="soc-card-title">Unggah log sendiri</h2>
+              <p class="soc-privacy">
+                <strong>Privasi:</strong> Log diproses sepenuhnya di browser kamu dan tidak dikirim ke server mana pun.
+              </p>
+              <p class="soc-warning">
+                <strong>Peringatan:</strong> Jangan unggah log yang berisi data sensitif.
+              </p>
+
+              <label class="soc-dropzone" id="dropzone" for="file-input">
+                <input type="file" id="file-input" class="soc-file-input" accept=".log,.txt,text/plain">
+                <span class="soc-dropzone-title">Pilih atau seret file ke sini</span>
+                <span class="soc-muted">Format: auth.log SSH (syslog sshd) · Maks. 10 MB</span>
+              </label>
+
+              <button type="button" id="btn-download-sample" class="btn btn-outline btn-sm">
+                Unduh contoh auth.log
+              </button>
+            </article>
+          </div>
+
+          <div id="soc-message" class="auth-alert soc-message" role="alert" hidden></div>
+
+          <!-- Layar 2: hasil analisis -->
+          <div id="results-screen" class="soc-results" hidden>
+            <div class="soc-results-head">
+              <div>
+                <span class="soc-label">Sumber</span>
+                <p id="result-source" class="soc-source-name"></p>
+                <p id="result-stats" class="soc-muted"></p>
+              </div>
+              <button type="button" id="btn-new-analysis" class="btn btn-secondary btn-sm">← Analisis baru</button>
+            </div>
+
+            <div class="key-facts-grid soc-summary">
+              <div class="fact-card">
+                <span class="fact-number" id="sum-events">0</span>
+                <span class="fact-label">Event dianalisis</span>
+                <span class="fact-desc" id="sum-events-desc"></span>
+              </div>
+              <div class="fact-card">
+                <span class="fact-number" id="sum-alerts">0</span>
+                <span class="fact-label">Alert</span>
+                <span class="fact-desc" id="sum-alerts-desc"></span>
+              </div>
+              <div class="fact-card">
+                <span class="fact-number" id="sum-top"></span>
+                <span class="fact-label">Alert paling parah</span>
+                <span class="fact-desc" id="sum-top-desc"></span>
+              </div>
+            </div>
+
+            <div id="no-alert-banner" class="soc-clean" hidden></div>
+
+            <!-- Filter (berlaku untuk grafik, top IP, dan tabel alert) -->
+            <form id="filters" class="soc-filters" aria-label="Filter hasil">
+              <label class="soc-filter">
+                <span class="soc-label">IP</span>
+                <select id="filter-ip" class="form-input"></select>
+              </label>
+              <label class="soc-filter">
+                <span class="soc-label">Severity</span>
+                <select id="filter-severity" class="form-input">
+                  <option value="">Semua</option>
+                  <option value="critical">Critical</option>
+                  <option value="high">High</option>
+                  <option value="medium">Medium</option>
+                  <option value="low">Low</option>
+                </select>
+              </label>
+              <label class="soc-filter">
+                <span class="soc-label">Dari</span>
+                <input type="datetime-local" id="filter-from" class="form-input" step="1">
+              </label>
+              <label class="soc-filter">
+                <span class="soc-label">Sampai</span>
+                <input type="datetime-local" id="filter-to" class="form-input" step="1">
+              </label>
+              <button type="reset" class="btn btn-outline btn-sm soc-filter-reset">Reset filter</button>
+            </form>
+
+            <div class="soc-panel">
+              <div class="soc-panel-head">
+                <h3 class="soc-panel-title">Aktivitas login per waktu</h3>
+                <div class="soc-legend" aria-hidden="true">
+                  <span class="soc-legend-item"><span class="soc-swatch soc-swatch-failure"></span>Gagal</span>
+                  <span class="soc-legend-item"><span class="soc-swatch soc-swatch-success"></span>Berhasil</span>
+                </div>
+              </div>
+              <div id="activity-chart" class="soc-chart"></div>
+            </div>
+
+            <div class="soc-grid-2">
+              <div class="soc-panel">
+                <div class="soc-panel-head">
+                  <h3 class="soc-panel-title">Top IP (login gagal)</h3>
+                </div>
+                <ol id="top-ips" class="soc-top-ips"></ol>
+              </div>
+
+              <div class="soc-panel soc-panel-wide">
+                <div class="soc-panel-head">
+                  <h3 class="soc-panel-title">Alert</h3>
+                  <span id="alert-count-label" class="soc-muted"></span>
+                </div>
+                <div class="soc-table-wrap">
+                  <table class="soc-table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Severity</th>
+                        <th scope="col">Aturan</th>
+                        <th scope="col">IP</th>
+                        <th scope="col">Jumlah</th>
+                        <th scope="col">Terakhir</th>
+                        <th scope="col">MITRE</th>
+                      </tr>
+                    </thead>
+                    <tbody id="alert-rows"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Panel detail alert -->
+  <div id="detail-overlay" class="soc-detail-overlay" hidden>
+    <aside class="soc-detail" role="dialog" aria-modal="true" aria-labelledby="detail-title">
+      <div class="terminal-bar">
+        <div class="terminal-title">ALERT DETAIL</div>
+        <button type="button" class="modal-close-btn" id="detail-close" aria-label="Tutup">✕</button>
+      </div>
+      <div class="soc-detail-body">
+        <p id="detail-severity"></p>
+        <h3 id="detail-title" class="soc-detail-title"></h3>
+        <p id="detail-description" class="soc-detail-desc"></p>
+        <dl id="detail-fields" class="soc-detail-fields"></dl>
+        <h4 class="soc-label">Log mentah (bukti)</h4>
+        <p id="detail-evidence-note" class="soc-muted"></p>
+        <pre id="detail-evidence" class="soc-evidence"></pre>
+      </div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-left">
+        <span class="footer-name">Rangga Ganupranowo Hadad</span>
+        <span class="footer-divider">|</span>
+        <span class="footer-tagline">Cybersecurity &amp; Network Defense</span>
+      </div>
+      <div class="footer-right">
+        <a href="../../index.html#projects" class="back-to-top">Portfolio Projects ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/shared/script.js"></script>
+
+  <!-- Supabase JS Client & Centralized Auth -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../../js/shared/supabase-config.js"></script>
+  <script src="../../js/shared/supabase-client.js"></script>
+  <script src="../../js/shared/auth.js"></script>
+
+  <!-- Logika tool ini (ES module; engine di ./engine/) -->
+  <script type="module" src="tool.js"></script>
+</body>
+</html>

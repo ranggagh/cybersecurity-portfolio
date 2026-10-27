@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Portfolio of Rangga Ganupranowo Hadad - Aspiring Cybersecurity Engineer, Computer Engineering graduate from Universitas Diponegoro (UNDIP).">
   <title>Rangga Ganupranowo Hadad | Aspiring Cybersecurity Engineer</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/base.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -37,9 +37,6 @@
         <li><a href="#education" class="nav-link"><span class="nav-index">05.</span>Education</a></li>
         <li><a href="#contact" class="nav-link cta-link">Connect</a></li>
       </ul>
-
-      <!-- Centralized Auth Slot -->
-      <div id="nav-auth-container" class="nav-auth-container"></div>
     </nav>
   </header>
 
@@ -345,29 +342,30 @@
           <!-- Project 1: SOC Monitoring Dashboard -->
           <article class="cyber-card project-card">
             <div class="project-header">
-              <span class="project-badge badge-primary">SOC OPERATIONS / SIEM</span>
+              <span class="project-badge badge-primary">SOC / LOG ANALYSIS</span>
               <span class="project-status">APPLICATION</span>
             </div>
             
             <h3 class="project-title">
-              <a href="soc-dashboard.html">SOC Monitoring Dashboard</a>
+              <a href="tools/soc-dashboard/index.html">SOC Monitoring Dashboard</a>
             </h3>
             
             <p class="project-description">
-              Real-time security operations center telemetry interface. Features live event log aggregation, 
-              threat alert correlation, brute-force attack detection patterns, and host defense metrics.
+              Browser-based SSH auth.log analyzer for learning and experimentation. Detects brute force,
+              password spraying, attacks on privileged accounts, and successful logins after failures,
+              with the raw log lines behind every alert. Try simulated scenarios or upload your own log.
             </p>
 
             <div class="project-tech-stack">
-              <span class="tech-pill">SOC Dashboard</span>
-              <span class="tech-pill">SIEM</span>
-              <span class="tech-pill">Log Correlation</span>
-              <span class="tech-pill">Threat Telemetry</span>
-              <span class="tech-pill">Security Analytics</span>
+              <span class="tech-pill">SSH auth.log</span>
+              <span class="tech-pill">Detection Rules</span>
+              <span class="tech-pill">MITRE ATT&amp;CK</span>
+              <span class="tech-pill">Brute Force</span>
+              <span class="tech-pill">Browser-only</span>
             </div>
 
             <div class="project-footer">
-              <a href="soc-dashboard.html" class="btn btn-primary btn-sm">
+              <a href="tools/soc-dashboard/index.html" class="btn btn-primary btn-sm">
                 <span>Launch App</span>
                 <span class="btn-icon">→</span>
               </a>
@@ -383,7 +381,7 @@
             </div>
             
             <h3 class="project-title">
-              <a href="incident-management.html">Incident Management</a>
+              <a href="tools/incident-management/index.html">Incident Management</a>
             </h3>
             
             <p class="project-description">
@@ -400,7 +398,7 @@
             </div>
 
             <div class="project-footer">
-              <a href="incident-management.html" class="btn btn-primary btn-sm">
+              <a href="tools/incident-management/index.html" class="btn btn-primary btn-sm">
                 <span>Launch App</span>
                 <span class="btn-icon">→</span>
               </a>
@@ -416,7 +414,7 @@
             </div>
             
             <h3 class="project-title">
-              <a href="cyber-lab.html">Cybersecurity Lab Portal</a>
+              <a href="tools/cyber-lab/index.html">Cybersecurity Lab Portal</a>
             </h3>
             
             <p class="project-description">
@@ -433,7 +431,7 @@
             </div>
 
             <div class="project-footer">
-              <a href="cyber-lab.html" class="btn btn-primary btn-sm">
+              <a href="tools/cyber-lab/index.html" class="btn btn-primary btn-sm">
                 <span>Launch App</span>
                 <span class="btn-icon">→</span>
               </a>
@@ -694,19 +692,19 @@
   </footer>
 
   <!-- 3D Three.js Library & Scene Script -->
-  <script src="js/three.min.js"></script>
+  <script src="js/vendor/three.min.js"></script>
   <script>
     if (typeof THREE === 'undefined') {
       document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"><\/script>');
     }
   </script>
-  <script src="js/three-scene.js"></script>
-  <script src="js/script.js"></script>
+  <script src="js/home/three-scene.js"></script>
+  <script src="js/shared/script.js"></script>
 
-  <!-- Supabase JS Client & Centralized Auth -->
+  <!-- Supabase JS Client & Centralized Auth (modal login untuk Launch App) -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="js/supabase-config.js"></script>
-  <script src="js/supabase-client.js"></script>
-  <script src="js/auth.js"></script>
+  <script src="js/shared/supabase-config.js"></script>
+  <script src="js/shared/supabase-client.js"></script>
+  <script src="js/shared/auth.js"></script>
 </body>
 </html>

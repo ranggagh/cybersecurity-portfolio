@@ -9,6 +9,9 @@
   let clientInstance = null;
 
   function initSupabase() {
+    // Satu client per halaman: guard, auth, dan tool berbagi sesi yang sama
+    if (clientInstance) return clientInstance;
+
     if (typeof window.supabase === 'undefined') {
       console.warn('[Supabase] Supabase JS library not loaded. Check CDN script tag.');
       return null;
@@ -17,7 +20,7 @@
     const config = window.SUPABASE_CONFIG;
     if (!config || !config.url || !config.anonKey || config.anonKey === 'YOUR_SUPABASE_ANON_KEY') {
       console.info(
-        '[Supabase] Anon key belum diisi. Masukkan anon public key dari Supabase Dashboard di js/supabase-config.js atau via setLocalAnonKey("...")'
+        '[Supabase] Anon key belum diisi. Masukkan anon public key dari Supabase Dashboard di js/shared/supabase-config.js atau via setLocalAnonKey("...")'
       );
       return null;
     }

@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Cybersecurity Lab Portal - Hands-on security testing, protocol analysis, and attack simulation lab.">
-  <title>Cybersecurity Lab Portal | Rangga Ganupranowo Hadad</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta name="description" content="Incident Management - Security incident response, triage workflow, and ticket lifecycle tracking.">
+  <title>Incident Management | Rangga Ganupranowo Hadad</title>
+  <!-- Wajib login: sembunyikan halaman sampai sesi Supabase terkonfirmasi -->
+  <script src="../../js/shared/auth-guard.js"></script>
+  <link rel="stylesheet" href="../../css/base.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -17,15 +19,15 @@
   <!-- App Header & Navigation -->
   <header class="site-header">
     <nav class="nav-container">
-      <a href="index.html" class="brand-logo" aria-label="Home">
+      <a href="../../index.html" class="brand-logo" aria-label="Home">
         <span class="logo-prefix">&gt;</span>
         <span class="logo-name">RGH</span>
-        <span class="logo-badge">LAB::PORTAL</span>
+        <span class="logo-badge">INCIDENT::OPS</span>
       </a>
 
       <div class="app-nav-actions" style="display: flex; align-items: center; gap: 1rem;">
         <div id="nav-auth-container" class="nav-auth-container"></div>
-        <a href="index.html#projects" class="btn btn-outline btn-sm">
+        <a href="../../index.html#projects" class="btn btn-outline btn-sm">
           <span>← Back to Portfolio</span>
         </a>
       </div>
@@ -37,25 +39,25 @@
       <!-- Breadcrumb & Status -->
       <div class="app-header-bar">
         <div class="breadcrumb">
-          <a href="index.html">Portfolio</a>
+          <a href="../../index.html">Portfolio</a>
           <span class="sep">/</span>
-          <a href="index.html#projects">Projects</a>
+          <a href="../../index.html#projects">Projects</a>
           <span class="sep">/</span>
-          <span class="current">Cybersecurity Lab Portal</span>
+          <span class="current">Incident Management</span>
         </div>
 
         <div class="status-indicator">
           <span class="status-dot"></span>
-          <span class="status-text">LAB ENVIRONMENT // ISOLATED &amp; ACTIVE</span>
+          <span class="status-text">INCIDENT RESPONSE // TRIAGE READY</span>
         </div>
       </div>
 
       <!-- Application Hero Header -->
       <div class="app-title-section">
-        <h1 class="section-title">Cybersecurity Lab Portal</h1>
+        <h1 class="section-title">Incident Management</h1>
         <p class="lead-text">
-          Interactive hands-on security laboratory and simulation environment. Experiment with network packet captures, 
-          protocol analysis, threat scenario simulations, and defensive telemetry validation.
+          Security incident response and ticket tracking lifecycle. Facilitate fast alert triage, 
+          severity categorization (P1-P4), containment steps, and structured remediation logs.
         </p>
       </div>
 
@@ -67,40 +69,40 @@
             <span class="term-btn term-min"></span>
             <span class="term-btn term-max"></span>
           </div>
-          <div class="terminal-title">lab-sandbox: /opt/cyber-lab/portal</div>
-          <div class="terminal-status">SANDBOX READY</div>
+          <div class="terminal-title">ir-node-02: /opt/incident/workflow</div>
+          <div class="terminal-status">ACTIVE QUEUE</div>
         </div>
 
         <div class="app-container-body" style="padding: 2rem;">
           <!-- Metric Quick Cards -->
           <div class="key-facts-grid" style="margin-bottom: 2rem;">
             <div class="fact-card">
-              <span class="fact-number" style="color: #38bdf8;">04</span>
-              <span class="fact-label">Lab Modules</span>
-              <span class="fact-desc">SIEM, Packet, IoT, SSH</span>
+              <span class="fact-number" style="color: #ef4444;">02</span>
+              <span class="fact-label">P1 Critical</span>
+              <span class="fact-desc">Active Containment</span>
             </div>
             <div class="fact-card">
-              <span class="fact-number" style="color: var(--accent-cyan);">PCAP</span>
-              <span class="fact-label">Packet Inspection</span>
-              <span class="fact-desc">Wireshark &amp; TCP/IP Flow</span>
+              <span class="fact-number" style="color: #f59e0b;">07</span>
+              <span class="fact-label">Under Investigation</span>
+              <span class="fact-desc">SOC Triage Queue</span>
             </div>
             <div class="fact-card">
-              <span class="fact-number" style="color: var(--accent-green);">100%</span>
-              <span class="fact-label">Safe Sandbox</span>
-              <span class="fact-desc">Simulated Threat Vectors</span>
+              <span class="fact-number" style="color: var(--accent-green);">18m</span>
+              <span class="fact-label">Avg MTTR</span>
+              <span class="fact-desc">Mean Time to Remediate</span>
             </div>
           </div>
 
           <!-- Application Interface Slot -->
           <div class="cyber-card" style="background: rgba(7, 11, 20, 0.75); border-style: dashed; text-align: center; padding: 3.5rem 1.5rem;">
-            <p style="font-family: var(--font-mono); color: #38bdf8; font-size: 1.1rem; margin-bottom: 0.75rem;">
+            <p style="font-family: var(--font-mono); color: var(--accent-green); font-size: 1.1rem; margin-bottom: 0.75rem;">
               [ APPLICATION CONTAINER READY ]
             </p>
             <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 1.5rem; line-height: 1.6;">
-              Area ini disiapkan untuk antarmuka aplikasi interaktif <strong>Cybersecurity Lab Portal</strong>. 
-              Modul simulasi serangan, PCAP packet inspector, dan visualisasi topologi jaringan siap dibangun di sini.
+              Area ini disiapkan untuk antarmuka aplikasi interaktif <strong>Incident Management</strong>. 
+              Tabel tiket insiden, alur eskalasi, form laporan investigasi, dan log audit siap dibangun di sini.
             </p>
-            <a href="index.html#projects" class="btn btn-secondary btn-sm">
+            <a href="../../index.html#projects" class="btn btn-secondary btn-sm">
               <span>Kembali ke Portfolio Utama</span>
             </a>
           </div>
@@ -117,17 +119,17 @@
         <span class="footer-tagline">Cybersecurity &amp; Network Defense</span>
       </div>
       <div class="footer-right">
-        <a href="index.html#projects" class="back-to-top">Portfolio Projects ↑</a>
+        <a href="../../index.html#projects" class="back-to-top">Portfolio Projects ↑</a>
       </div>
     </div>
   </footer>
 
-  <script src="js/script.js"></script>
+  <script src="../../js/shared/script.js"></script>
 
   <!-- Supabase JS Client & Centralized Auth -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="js/supabase-config.js"></script>
-  <script src="js/supabase-client.js"></script>
-  <script src="js/auth.js"></script>
+  <script src="../../js/shared/supabase-config.js"></script>
+  <script src="../../js/shared/supabase-client.js"></script>
+  <script src="../../js/shared/auth.js"></script>
 </body>
 </html>

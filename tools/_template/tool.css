@@ -1,0 +1,19 @@
+/* --------------------------------------------------------------------------
+   TOOL_NAME
+   Gaya khusus tool ini. Variabel warna & komponen umum ada di css/base.css.
+   -------------------------------------------------------------------------- */
+
+.tool-root {
+  padding: 2rem;
+}
+
+/* Atribut hidden harus menang atas display: flex/grid milik komponen tool */
+.tool-root [hidden] {
+  display: none !important;
+}
+
+.tool-placeholder {
+  font-family: var(--font-mono);
+  color: var(--accent-cyan);
+  text-align: center;
+}
