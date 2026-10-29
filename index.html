@@ -548,31 +548,18 @@
               will be updated here as official credentials are confirmed.
             </p>
             
-            <div class="cert-slots">
-              <div class="cert-slot-item">
-                <div class="slot-indicator">✓</div>
-                <div class="slot-details">
-                  <span class="slot-title">Splunk &amp; SIEM Hands-On Labs</span>
-                  <span class="slot-issuer">Practical Security Simulation &amp; Ingestion</span>
+            <!-- Diisi dari tabel Supabase "certifications" oleh js/home/certifications.js -->
+            <!-- Kotak gulir setinggi 3 kartu; tinggi dihitung di certifications.js -->
+            <div class="cert-scroll-frame" id="cert-scroll-frame">
+              <div class="cert-scroll" id="cert-scroll" role="region" aria-label="Daftar sertifikat" tabindex="0">
+                <div class="cert-slots" id="cert-list" aria-live="polite" aria-busy="true">
+                  <p class="cert-empty">Memuat sertifikat...</p>
                 </div>
               </div>
-
-              <div class="cert-slot-item">
-                <div class="slot-indicator">✓</div>
-                <div class="slot-details">
-                  <span class="slot-title">Computer Engineering Capstone / IoT Telemetry</span>
-                  <span class="slot-issuer">Universitas Diponegoro Engineering Program</span>
-                </div>
-              </div>
-
-              <!-- Placeholder slot for user to easily insert new certs -->
-              <div class="cert-slot-item slot-placeholder">
-                <div class="slot-indicator">+</div>
-                <div class="slot-details">
-                  <span class="slot-title">[Add Next Completed Certification]</span>
-                  <span class="slot-issuer">Ready for CompTIA Security+, CCNA, or Splunk Certified Core User</span>
-                </div>
-              </div>
+            </div>
+            <p class="cert-scroll-hint" id="cert-scroll-hint" hidden></p>
+            <div class="cert-add">
+              <button type="button" class="btn btn-outline btn-sm" id="cert-add-btn" hidden>+ Tambah sertifikat</button>
             </div>
           </div>
         </div>
@@ -632,7 +619,6 @@
                   <a href="mailto:rangga.hadad@gmail.com" class="contact-link">
                     rangga.hadad@gmail.com
                   </a>
-                  <span class="email-note">(Updateable in index.html)</span>
                 </div>
               </div>
             </div>
@@ -706,5 +692,11 @@
   <script src="js/shared/supabase-config.js"></script>
   <script src="js/shared/supabase-client.js"></script>
   <script src="js/shared/auth.js"></script>
+
+  <!-- Certifications & Courses (dibaca dari Supabase) -->
+  <script src="js/shared/toast.js"></script>
+  <script src="js/shared/cert-utils.js"></script>
+  <script src="js/shared/certifications-store.js"></script>
+  <script src="js/home/certifications.js"></script>
 </body>
 </html>

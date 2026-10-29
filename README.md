@@ -28,9 +28,13 @@ Portofolio/
 │   │   ├── supabase-config.js URL & anon key Supabase
 │   │   ├── supabase-client.js Inisialisasi client Supabase
 │   │   ├── auth.js            Modal login/register, sesi, alur Launch App, navbar tool
-│   │   └── auth-guard.js      Proteksi halaman tool (wajib login)
+│   │   ├── auth-guard.js      Proteksi halaman tool (wajib login)
+│   │   ├── cert-utils.js      Validasi & format sertifikat (fungsi murni, juga dipakai tes Node)
+│   │   ├── certifications-store.js  Query Supabase tabel certifications + bucket certificates
+│   │   └── tests/             Tes cert-utils (node --test js/shared/tests/)
 │   ├── home/
-│   │   └── three-scene.js     Animasi 3D hero (khusus index.html)
+│   │   ├── three-scene.js     Animasi 3D hero (khusus index.html)
+│   │   └── certifications.js  Render kartu "Certifications & Courses" dari Supabase
 │   └── vendor/
 │       └── three.min.js       Library pihak ketiga
 ├── tools/
@@ -42,8 +46,11 @@ Portofolio/
 │   │   └── package.json       Hanya untuk menjalankan tes
 │   ├── incident-management/
 │   └── cyber-lab/
+├── admin/
+│   └── certifications/        Kelola sertifikat (tidak ditautkan; hanya admin)
 └── supabase/
-    └── migrations/            SQL skema database
+    ├── migrations/            SQL skema database
+    └── tests/                 Uji RLS (SQL & skrip Node)
 ```
 
 ## Menambah tool baru
@@ -104,3 +111,34 @@ unggahan file (teks)  ┘
   dan modal login terbuka otomatis. `?next=` hanya menerima path internal situs ini.
 - **Di dalam tool**: navbar menampilkan email pengguna dan tombol Logout; setelah logout kembali ke halaman utama.
 - Hanya anon/publishable key Supabase yang boleh ada di frontend (`supabase-config.js`).
+
+## Sertifikat (Supabase)
+
+Bagian "Certifications & Courses" di halaman utama dibaca dari tabel `certifications`; file sertifikat
+(PNG/JPEG/PDF, maks. 5 MB) ada di bucket Storage publik `certificates`. Jika tabel kosong atau gagal
+dimuat, halaman menampilkan pesan netral.
+
+- **Admin** = satu akun, dicocokkan lewat `auth.uid()` di fungsi `public.is_certifications_admin()`.
+  Bukan email, `user_metadata`, `profiles.role`, atau sekadar "sudah login" (pendaftaran publik tetap terbuka).
+- **Keamanan ada di RLS**: semua orang boleh membaca tabel; INSERT/UPDATE/DELETE di tabel hanya untuk admin.
+  `anon` hanya punya hak SELECT di tabel. Frontend hanya memakai anon key.
+- **Bucket**: file dibuka lewat URL publik (bucket public, tanpa RLS untuk unduhan). Melihat daftar file,
+  upload, ganti, dan hapus hanya untuk admin.
+- **Halaman admin**: `/admin/certifications/` (tidak ada di navbar). Login lewat alur biasa; akun selain
+  admin melihat "Akses ditolak" dan form tidak dipasang (ini hanya kenyamanan, bukan pengamanan).
+- **Render**: isi database ditampilkan lewat `textContent`; link verifikasi hanya `https://`.
+
+### Menyiapkan
+
+1. Buka `supabase/migrations/03_create_certifications.sql`, ganti `GANTI_DENGAN_UID_ADMIN` (satu tempat)
+   dengan UID akun admin dari Dashboard > Authentication > Users, lalu jalankan di SQL Editor.
+   Migrasi dibatalkan seluruhnya jika placeholder belum diganti atau UID tidak ada.
+2. Jalankan `supabase/tests/certifications_rls_test.sql` di SQL Editor. Semua baris harus `PASS`
+   (tidak ada data yang tersimpan; semuanya di-rollback).
+3. Login sebagai admin, buka `/admin/certifications/`, tambahkan sertifikat.
+4. (Disarankan) Uji end-to-end dengan akun non-admin sungguhan: lihat komentar di atas
+   `supabase/tests/rls-certifications.mjs`, lalu `node supabase/tests/rls-certifications.mjs`.
+
+### Tes
+
+- Validasi (tipe file, ukuran, skema URL, form): `node --test js/shared/tests/`

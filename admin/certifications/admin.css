@@ -1,0 +1,262 @@
+/* --------------------------------------------------------------------------
+   Admin: Kelola Sertifikat
+   Gaya khusus halaman ini. Variabel warna & komponen umum ada di css/base.css.
+   -------------------------------------------------------------------------- */
+
+.admin-root {
+  padding: 2rem;
+}
+
+/* Atribut hidden harus menang atas display: flex/grid milik komponen halaman */
+.admin-root [hidden] {
+  display: none !important;
+}
+
+.admin-placeholder {
+  font-family: var(--font-mono);
+  color: var(--accent-cyan);
+  text-align: center;
+}
+
+/* Akses ditolak */
+.admin-denied {
+  text-align: center;
+  padding: 1.5rem 0;
+}
+
+.admin-denied-title {
+  font-family: var(--font-mono);
+  font-size: 1.35rem;
+  color: #ef4444;
+  margin-bottom: 0.5rem;
+}
+
+.admin-denied-text {
+  color: var(--text-secondary);
+}
+
+.admin-denied-detail {
+  margin-top: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  overflow-wrap: anywhere;
+}
+
+/* Panel */
+.admin-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.admin-panel .auth-alert {
+  margin-bottom: 0;
+  overflow-wrap: anywhere;
+}
+
+.admin-block-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.admin-block-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.admin-count {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* Form */
+.admin-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.1rem 1.25rem;
+}
+
+.form-span-2 {
+  grid-column: 1 / -1;
+}
+
+.admin-form .form-input {
+  width: 100%;
+  min-width: 0;
+}
+
+.admin-form input[type="date"] {
+  color-scheme: dark;
+}
+
+.form-file {
+  padding: 0.6rem 0.75rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.form-file::file-selector-button {
+  margin-right: 0.75rem;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--border-cyan);
+  border-radius: var(--radius-sm);
+  background: rgba(0, 245, 212, 0.08);
+  color: var(--accent-cyan);
+  font-family: var(--font-mono);
+  cursor: pointer;
+}
+
+.admin-form [aria-invalid="true"] {
+  border-color: rgba(239, 68, 68, 0.7);
+}
+
+.field-error {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: #ef4444;
+}
+
+.current-file {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  margin-top: 0.4rem;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+}
+
+.checkbox-label input {
+  accent-color: #ef4444;
+}
+
+.admin-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* Daftar */
+.admin-cert-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0;
+  margin: 0;
+}
+
+.admin-cert-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 1rem;
+  background: rgba(13, 21, 39, 0.6);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+}
+
+.admin-cert-item.is-editing {
+  border-color: var(--border-cyan-bright);
+  box-shadow: 0 0 12px var(--accent-cyan-glow);
+}
+
+.admin-cert-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.admin-cert-title {
+  font-weight: 600;
+  color: var(--text-primary);
+  overflow-wrap: anywhere;
+}
+
+.admin-cert-meta {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  overflow-wrap: anywhere;
+}
+
+.admin-cert-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.25rem;
+}
+
+.admin-tag {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  padding: 0.1rem 0.45rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  overflow-wrap: anywhere;
+}
+
+.admin-cert-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.btn-danger:hover,
+.btn-danger:focus-visible {
+  color: #ef4444;
+  border-color: rgba(239, 68, 68, 0.5);
+}
+
+.admin-cert-empty {
+  padding: 1rem;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  border: 1px dashed var(--border-subtle);
+  border-radius: var(--radius-sm);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 640px) {
+  .admin-root {
+    padding: 1.25rem 1rem;
+  }
+
+  .admin-form {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .admin-form-actions .btn {
+    flex: 1 1 100%;
+  }
+
+  .admin-cert-item {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .admin-cert-actions .btn {
+    flex: 1;
+  }
+}

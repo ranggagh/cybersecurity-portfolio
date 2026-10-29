@@ -329,6 +329,21 @@
     }
   }
 
+  // Buka modal login dengan tujuan setelah login (path divalidasi seperti ?next=)
+  function openLoginFor(nextPath) {
+    const target = resolveInternalUrl(nextPath);
+    if (!target) return false;
+
+    pendingNextUrl = target;
+    if (isConfigMissing()) {
+      openKeyModal();
+    } else {
+      openAuthModal('signin');
+      showAlert('Silakan login untuk melanjutkan.', 'info');
+    }
+    return true;
+  }
+
   /* --------------------------------------------------------------------------
      Navbar Session UI (halaman tool)
      -------------------------------------------------------------------------- */
@@ -674,6 +689,7 @@
     getProfile: () => currentProfile,
     onAuthStateChanged,
     openAuthModal,
+    openLoginFor,
     closeAuthModal,
     openKeyModal
   };

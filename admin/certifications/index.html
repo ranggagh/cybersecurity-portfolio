@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Kelola sertifikat & kursus portfolio.">
+  <title>Kelola Sertifikat | Rangga Ganupranowo Hadad</title>
+  <!-- Wajib login: sembunyikan halaman sampai sesi Supabase terkonfirmasi -->
+  <script src="../../js/shared/auth-guard.js"></script>
+  <link rel="stylesheet" href="../../css/base.css">
+  <link rel="stylesheet" href="admin.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Background Network Canvas -->
+  <canvas id="cyber-canvas" class="cyber-canvas" aria-hidden="true"></canvas>
+
+  <header class="site-header">
+    <nav class="nav-container">
+      <a href="../../index.html" class="brand-logo" aria-label="Home">
+        <span class="logo-prefix">&gt;</span>
+        <span class="logo-name">RGH</span>
+        <span class="logo-badge">ADMIN::CERTS</span>
+      </a>
+
+      <div class="app-nav-actions" style="display: flex; align-items: center; gap: 1rem;">
+        <div id="nav-auth-container" class="nav-auth-container"></div>
+        <a href="../../index.html#education" class="btn btn-outline btn-sm">
+          <span>← Back to Portfolio</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="app-page-main">
+    <div class="container">
+      <div class="app-header-bar">
+        <div class="breadcrumb">
+          <a href="../../index.html">Portfolio</a>
+          <span class="sep">/</span>
+          <span>Admin</span>
+          <span class="sep">/</span>
+          <span class="current">Sertifikat</span>
+        </div>
+
+        <div class="status-indicator">
+          <span class="status-dot"></span>
+          <span class="status-text" id="admin-status-text">STATUS // VERIFYING</span>
+        </div>
+      </div>
+
+      <div class="app-title-section">
+        <h1 class="section-title">Kelola Sertifikat</h1>
+        <p class="lead-text">
+          Tambah, ubah, dan hapus isi bagian "Certifications &amp; Courses" di halaman utama.
+        </p>
+      </div>
+
+      <section class="app-workspace cyber-card">
+        <div class="terminal-bar">
+          <div class="terminal-buttons">
+            <span class="term-btn term-close"></span>
+            <span class="term-btn term-min"></span>
+            <span class="term-btn term-max"></span>
+          </div>
+          <div class="terminal-title">node: /admin/certifications</div>
+          <div class="terminal-status" id="admin-terminal-status">VERIFYING</div>
+        </div>
+
+        <div id="admin-root" class="app-container-body admin-root">
+          <p class="admin-placeholder" id="admin-loading">Memverifikasi hak akses...</p>
+
+          <div class="admin-denied" id="admin-denied" hidden>
+            <h2 class="admin-denied-title">Akses ditolak</h2>
+            <p class="admin-denied-text">Akun ini tidak memiliki hak untuk mengelola sertifikat.</p>
+            <p class="admin-denied-detail" id="admin-denied-detail" hidden></p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Panel admin: hanya dipasang ke halaman setelah RPC is_certifications_admin() bernilai true -->
+  <template id="admin-panel-template">
+    <div class="admin-panel">
+      <div id="admin-alert" class="auth-alert" role="status" aria-live="polite" hidden></div>
+
+      <section class="admin-block" aria-labelledby="cert-form-title">
+        <h2 class="admin-block-title" id="cert-form-title">Tambah Sertifikat</h2>
+
+        <form id="cert-form" class="cyber-form admin-form" novalidate>
+          <div class="form-group form-span-2">
+            <label for="cert-title" class="form-label">Judul *</label>
+            <input type="text" id="cert-title" class="form-input" maxlength="200" required aria-describedby="err-title">
+            <p class="field-error" id="err-title" hidden></p>
+          </div>
+
+          <div class="form-group">
+            <label for="cert-issuer" class="form-label">Penerbit *</label>
+            <input type="text" id="cert-issuer" class="form-input" maxlength="200" required aria-describedby="err-issuer">
+            <p class="field-error" id="err-issuer" hidden></p>
+          </div>
+
+          <div class="form-group">
+            <label for="cert-issued-date" class="form-label">Tanggal terbit *</label>
+            <input type="date" id="cert-issued-date" class="form-input" required aria-describedby="err-issuedDate">
+            <p class="field-error" id="err-issuedDate" hidden></p>
+          </div>
+
+          <div class="form-group">
+            <label for="cert-credential-id" class="form-label">ID kredensial (opsional)</label>
+            <input type="text" id="cert-credential-id" class="form-input" maxlength="200" aria-describedby="err-credentialId">
+            <p class="field-error" id="err-credentialId" hidden></p>
+          </div>
+
+          <div class="form-group">
+            <label for="cert-sort-order" class="form-label">Urutan (kecil tampil lebih dulu)</label>
+            <input type="number" id="cert-sort-order" class="form-input" step="1" value="0" inputmode="numeric" aria-describedby="err-sortOrder">
+            <p class="field-error" id="err-sortOrder" hidden></p>
+          </div>
+
+          <div class="form-group form-span-2">
+            <label for="cert-credential-url" class="form-label">URL verifikasi (opsional, https)</label>
+            <input type="url" id="cert-credential-url" class="form-input" maxlength="2048" placeholder="https://" inputmode="url" aria-describedby="err-credentialUrl">
+            <p class="field-error" id="err-credentialUrl" hidden></p>
+          </div>
+
+          <div class="form-group form-span-2">
+            <label for="cert-file" class="form-label">File sertifikat (opsional: PNG, JPEG, atau PDF, maks. 5 MB)</label>
+            <input type="file" id="cert-file" class="form-input form-file" accept=".png,.jpg,.jpeg,.pdf,image/png,image/jpeg,application/pdf" aria-describedby="err-file">
+            <p class="field-error" id="err-file" hidden></p>
+
+            <div class="current-file" id="current-file" hidden>
+              <span class="current-file-label">File saat ini:</span>
+              <a id="current-file-link" class="slot-action" target="_blank" rel="noopener noreferrer">Lihat file</a>
+              <label class="checkbox-label">
+                <input type="checkbox" id="cert-remove-file">
+                <span>Hapus file ini</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="admin-form-actions form-span-2">
+            <button type="submit" class="btn btn-primary" id="btn-save">
+              <span>Simpan Sertifikat</span>
+            </button>
+            <button type="button" class="btn btn-outline" id="btn-cancel-edit" hidden>
+              <span>Batal Ubah</span>
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <section class="admin-block" aria-labelledby="cert-list-title">
+        <div class="admin-block-header">
+          <h2 class="admin-block-title" id="cert-list-title">Daftar Sertifikat</h2>
+          <span class="admin-count" id="cert-count"></span>
+        </div>
+        <ul class="admin-cert-list" id="admin-cert-list" aria-live="polite"></ul>
+      </section>
+    </div>
+  </template>
+
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-left">
+        <span class="footer-name">Rangga Ganupranowo Hadad</span>
+        <span class="footer-divider">|</span>
+        <span class="footer-tagline">Cybersecurity &amp; Network Defense</span>
+      </div>
+      <div class="footer-right">
+        <a href="../../index.html#education" class="back-to-top">Portfolio ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/shared/script.js"></script>
+
+  <!-- Supabase JS Client & Centralized Auth -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../../js/shared/supabase-config.js"></script>
+  <script src="../../js/shared/supabase-client.js"></script>
+  <script src="../../js/shared/auth.js"></script>
+
+  <!-- Data & validasi sertifikat (bersama halaman utama) -->
+  <script src="../../js/shared/cert-utils.js"></script>
+  <script src="../../js/shared/certifications-store.js"></script>
+
+  <script type="module" src="admin.js"></script>
+</body>
+</html>
